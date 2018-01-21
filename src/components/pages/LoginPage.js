@@ -9,7 +9,6 @@ import { login } from "../../actions/index";
 class LoginPage extends Component {
   submit = data =>
     this.props.login(data).then(() => this.props.history.push("/Dashboard"));
-
   render() {
     return (
       <div>

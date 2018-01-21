@@ -22,4 +22,7 @@ export const logout = () => dispatch => {
 };
 
 export const signup = user => dispatch =>
-  api.user.signup(user).then(user => dispatch(logInUser(user)));
+  api.user.signup(user).then(user => {
+    localStorage.token = user.token;
+    dispatch(logInUser(user))
+  });

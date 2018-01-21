@@ -8,10 +8,11 @@ import { Header } from "semantic-ui-react";
 class SignUp extends Component {
   submit = user =>
     this.props.signup(user).then(() => this.props.history.push("/Dashboard"));
-
+  renderEnv = () => console.log(process.env)
   render() {
     return (
       <div>
+        {this.renderEnv()}
         <Header>Sign Up</Header>
         <SignUpForm submit={this.submit} />
       </div>

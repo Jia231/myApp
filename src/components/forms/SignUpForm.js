@@ -130,7 +130,7 @@ class SignUpForm extends React.Component {
               <div className="field">
                 {errors.gender && <InlineErrors error={errors.gender} />}
                 <label>Gender</label>
-                <select name="gender" onChange={this.onChange} class='ui fluid dropdown'>
+                <select name="gender" onChange={this.onChange} className='ui fluid dropdown'>
                   <option value="">Select your gender</option>
                   <option value="M">Male</option>
                   <option value="F">Female</option>
