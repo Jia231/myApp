@@ -1,11 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 
-const Dashboard = ({ email }) => <div>Hi {email}!</div>;
+const Dashboard = ({ name }) => <div>Hi {name}!</div>;
 
 function mapStateToProps(state) {
   return {
-    email: state.user.email
+    name: state.user.name
   };
 }
 
