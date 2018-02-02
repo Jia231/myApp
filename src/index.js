@@ -22,10 +22,12 @@ const store = createStore(
 
 if (localStorage.token) {
   const payload = decode(localStorage.token);
-  console.log(payload);
+  //console.log(payload);
   const user = {
     token: localStorage.token,
-    email: payload.email
+    email: payload.email,
+    name: payload.name,
+    id: payload.id
   };
   store.dispatch(logInUser(user));
 }

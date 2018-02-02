@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 import HomePage from "./components/pages/HomePage";
 import LoginPage from "./components/pages/LoginPage";
 import Dashboard from "./components/pages/Dashboard";
+import AddMoviePage from "./components/pages/AddMoviePage";
 import GuestRoute from "./components/routes/GuestRoute";
 import { connect } from "react-redux";
 import UserRoute from "./components/routes/UserRoute";
@@ -24,6 +25,12 @@ const App = ({ location, isAuthenticated }) => (
       path="/Dashboard"
       exact
       component={Dashboard}
+    />
+    <UserRoute
+      location={location}
+      path="/Add/:id"
+      exact
+      component={AddMoviePage}
     />
     <GuestRoute location={location} exact path="/SignUp" component={SignUp} />
   </div>

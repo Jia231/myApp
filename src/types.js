@@ -1,2 +1,6 @@
 export const LOG_USER = "LOG_USER";
 export const USER_LOGOUT = "USER_LOGOUT";
+export const SHOW_POPULAR_MOVIES = "SHOW_POPULAR_MOVIES,";
+export const SHOW_USER_COLLECTION = "SHOW_USER_COLLECTION,";
+export const MOVIE_FETCHED = "MOVIE_FETCHED,";
+export const MOVIE_SAVED = "MOVIE_SAVED,";

@@ -9,17 +9,17 @@ class HomePage extends Component {
     const { isAuthenticated, logout } = this.props;
     return (
       <Container>
-        <Header as="h1">Welcome to VetApp!</Header>
+        <Header as="h1">Welcome to your Movie Store!</Header>
         {isAuthenticated ? (
           <div>
-            <a onClick={() => logout()}>Logout</a>
+            <Link to="/Dashboard">Go to your dashboard</Link>
           </div>
         ) : (
-          <div>
-            <Link to="/LoginPage">Login</Link> or
+            <div>
+              <Link to="/LoginPage">Login</Link> or
             <Link to="/SignUp">Sign Up</Link>
-          </div>
-        )}
+            </div>
+          )}
       </Container>
     );
   }

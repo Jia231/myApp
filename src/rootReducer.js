@@ -1,4 +1,4 @@
 import { combineReducers } from "redux";
-import user from "./reducers/index";
+import { user, movies } from "./reducers/index";
 
-export default combineReducers({ user });
+export default combineReducers({ user, movies });
