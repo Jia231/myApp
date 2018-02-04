@@ -9,10 +9,11 @@ import { connect } from "react-redux";
 import UserRoute from "./components/routes/UserRoute";
 import TopNavigation from "./components/navigation/TopNavigation";
 import SignUp from "./components/pages/SignUp";
+import PopularMovies from "./components/pages/PopularMovies";
 
 const App = ({ location, isAuthenticated }) => (
   <div className="ui container">
-    {isAuthenticated && <TopNavigation />}
+    {isAuthenticated && <TopNavigation locaction={location} />}
     <Route location={location} path="/" exact component={HomePage} />
     <GuestRoute
       location={location}
@@ -31,6 +32,12 @@ const App = ({ location, isAuthenticated }) => (
       path="/Add/:id"
       exact
       component={AddMoviePage}
+    />
+    <UserRoute
+      location={location}
+      path="/PopularMovies"
+      exact
+      component={PopularMovies}
     />
     <GuestRoute location={location} exact path="/SignUp" component={SignUp} />
   </div>

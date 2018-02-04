@@ -19,6 +19,8 @@ export default {
       .then(res => res.data.movie),
     personalCollection: userId => axios
       .post(`${baseURL}/api/movie/userCollection`, { userId })
+      .then(res => res.data),
+    deleteMovie: (_id, userId) => axios.post(`${baseURL}/api/movie/delete/${_id}`, { userId })
       .then(res => res.data)
   }
 };

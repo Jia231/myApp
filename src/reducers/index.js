@@ -1,6 +1,7 @@
 import {
   LOG_USER, USER_LOGOUT, SHOW_POPULAR_MOVIES,
-  MOVIE_FETCHED, MOVIE_SAVED, SHOW_USER_COLLECTION
+  MOVIE_FETCHED, MOVIE_SAVED, SHOW_USER_COLLECTION,
+  DELETE_MOVIE
 } from "../types";
 
 export function user(state = {}, action = {}) {
@@ -25,6 +26,8 @@ export function movies(state = {}, action = {}) {
       return action.movies;
     case MOVIE_SAVED:
       return state;
+    case DELETE_MOVIE:
+      return action.movies;
     default:
       return state;
   }

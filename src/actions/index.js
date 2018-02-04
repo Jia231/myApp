@@ -1,6 +1,6 @@
 import {
   LOG_USER, USER_LOGOUT, SHOW_POPULAR_MOVIES,
-  MOVIE_FETCHED, MOVIE_SAVED, SHOW_USER_COLLECTION
+  MOVIE_FETCHED, MOVIE_SAVED, SHOW_USER_COLLECTION, DELETE_MOVIE
 } from "../types";
 import api from "../api";
 import _ from 'lodash';
@@ -30,6 +30,11 @@ const userCollection = movies => ({
 const fetchMovie = movie => ({
   type: MOVIE_FETCHED,
   movie
+})
+
+const deleteMovie = movies => ({
+  type: DELETE_MOVIE,
+  movies
 })
 
 export const login = credentials => dispatch =>
@@ -78,3 +83,14 @@ export const loadUserCollection = userId => dispatch =>
       }
     }
     )
+
+export const removeMovie = (id, userId) => dispatch =>
+  api.movies.deleteMovie(id, userId)
+    .then(movies => {
+      if (movies.movies.length == 0) {
+        dispatch(loadPopularMovies())
+      }
+      else {
+        dispatch(userCollection(movies))
+      }
+    })

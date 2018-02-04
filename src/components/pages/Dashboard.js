@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { loadUserCollection } from "../../actions/index";
+import { loadUserCollection, removeMovie } from "../../actions/index";
 import MoviePoster from '../ctas/MoviePoster';
 import _ from 'lodash';
 
@@ -10,12 +10,17 @@ class Dashboard extends Component {
   componentDidMount() {
     this.props.loadUserCollection(this.props.userId)
   }
+  onDelete = (_id, userId) => {
+    this.props.removeMovie(_id, userId)
+  }
   renderMovie() {
     const data = this.props.movies;
-    console.log(data)
-    if (!!data.movies) {
+    console.log()
+    //if (!!data.movies) {
+    if (!_.isEmpty(data.movies)) {
       const data = this.props.movies;
-      const movieNodes = data.movies.map(movie => <MoviePoster key={movie.id} id={movie.id} movie={movie} />)
+      const movieNodes = data.movies.map(movie => <MoviePoster onDelete={this.onDelete}
+        key={movie.id} id={movie.id} movie={movie} userId={this.props.userId} />)
       const groupCards = _.chunk(movieNodes, 4);
       const rows = groupCards.map(row => <div className="ui four column grid">
         <div className="row">{row}</div></div>)
@@ -33,6 +38,7 @@ class Dashboard extends Component {
       return <div>Loading...</div>
     }
   }
+
   render() {
     const { name, movies } = this.props;
     return (
@@ -52,4 +58,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { loadUserCollection })(Dashboard);
+export default connect(mapStateToProps, { loadUserCollection, removeMovie })(Dashboard);
