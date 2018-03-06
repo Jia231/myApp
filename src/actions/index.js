@@ -4,6 +4,7 @@ import {
 } from "../types";
 import api from "../api";
 import _ from 'lodash';
+import cookie from 'react-cookie';
 
 export const logInUser = user => ({
   type: LOG_USER,
@@ -37,10 +38,16 @@ const deleteMovie = movies => ({
   movies
 })
 
-export const login = credentials => dispatch =>
+/*export const login = credentials => dispatch =>
   api.user.login(credentials).then(user => {
     localStorage.token = user.token;
     dispatch(logInUser(user));
+  });*/
+export const login = credentials => dispatch =>
+  api.user.login(credentials).then(() => {
+    console.log('getting the cookie')
+    const userCookie = cookie.load('user');
+    console.log(userCookie);
   });
 
 export const logout = () => dispatch => {
@@ -73,15 +80,15 @@ export const signup = user => dispatch =>
 
 export const loadUserCollection = userId => dispatch =>
   api.movies.personalCollection(userId)
-    .then(
-    movies => {
-      if (movies.movies.length == 0) {
-        dispatch(loadPopularMovies())
+    .then(movies =>
+      movies => {
+        if (movies.movies.length == 0) {
+          dispatch(loadPopularMovies())
+        }
+        else {
+          dispatch(userCollection(movies))
+        }
       }
-      else {
-        dispatch(userCollection(movies))
-      }
-    }
     )
 
 export const removeMovie = (id, userId) => dispatch =>

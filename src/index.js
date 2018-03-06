@@ -14,7 +14,6 @@ import decode from "jwt-decode";
 import { logInUser } from "./actions/index";
 import 'react-infinite-calendar/styles.css';
 
-
 const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(thunk))
