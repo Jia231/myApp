@@ -49,7 +49,7 @@ class MovieCard extends Component {
                             <div className="content">
                                 <img style={cardImageStyle}
                                     className="right floated mini ui image"
-                                    src={`https://image.tmdb.org/t/p/w640${poster_path}`} />
+                                    src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${poster_path}`} />
                                 <div className="header">
                                     {title}
                                 </div>

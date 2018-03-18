@@ -15,7 +15,7 @@ class Dashboard extends Component {
   }
   renderMovie() {
     const data = this.props.movies;
-    console.log()
+    console.log(data)
     //if (!!data.movies) {
     if (!_.isEmpty(data.movies)) {
       const data = this.props.movies;

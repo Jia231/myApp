@@ -4,7 +4,7 @@ import {
 } from "../types";
 import api from "../api";
 import _ from 'lodash';
-import cookie from 'react-cookie';
+import Cookies from 'js-cookie';
 
 export const logInUser = user => ({
   type: LOG_USER,
@@ -45,9 +45,8 @@ const deleteMovie = movies => ({
   });*/
 export const login = credentials => dispatch =>
   api.user.login(credentials).then(() => {
-    console.log('getting the cookie')
-    const userCookie = cookie.load('user');
-    console.log(userCookie);
+    const { user } = JSON.parse(Cookies.get('user'));
+    dispatch(logInUser(user))
   });
 
 export const logout = () => dispatch => {
@@ -57,7 +56,7 @@ export const logout = () => dispatch => {
 
 export const loadPopularMovies = () => dispatch => {
   api.movies.init().then(
-    movies => dispatch(showPopularMovies(movies))
+    movies => { console.log(movies); dispatch(showPopularMovies(movies)) }
   )
 }
 
@@ -80,15 +79,15 @@ export const signup = user => dispatch =>
 
 export const loadUserCollection = userId => dispatch =>
   api.movies.personalCollection(userId)
-    .then(movies =>
-      movies => {
-        if (movies.movies.length == 0) {
-          dispatch(loadPopularMovies())
-        }
-        else {
-          dispatch(userCollection(movies))
-        }
+    .then(movies => {
+      //   console.log(movies.movies.length)
+      if (movies.movies.length == 0) {
+        dispatch(loadPopularMovies())
       }
+      else {
+        dispatch(userCollection(movies))
+      }
+    }
     )
 
 export const removeMovie = (id, userId) => dispatch =>

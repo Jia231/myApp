@@ -26,7 +26,7 @@ class MoviePoster extends Component {
             <div className="column">
                 <div className="ui card" style={{ height: "500px" }} key={id} id={id}>
                     <div className="image">
-                        <img src={`https://image.tmdb.org/t/p/w640${poster_path}`} />
+                        <img src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${poster_path}`} />
                     </div>
                     <div className="content">
                         <Link to={`/Add/${id}`} className="header">{title}</Link>
